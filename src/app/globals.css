@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* ── Design tokens ────────────────────────────────────────────────────
+   Hex-based semantic tokens with a class-toggled dark mode. Series
+   colors are the dataviz-validated categorical palette (per-mode steps,
+   not an automatic flip). */
+
+:root {
+  --background: #fafafa;
+  --foreground: #171717;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
+  --accent: #2a78d6;
+  --accent-foreground: #ffffff;
+  --accent-soft: #eaf2fc;
+  --ring: #5598e7;
+
+  /* Categorical series — one hue per employer, fixed order (validated) */
+  --series-1: #2a78d6;
+  --series-2: #1baf7a;
+  --series-3: #eda100;
+  --series-4: #008300;
+  --series-5: #4a3aa7;
+}
+
+.dark {
+  --background: #0d0d0d;
+  --foreground: #ededed;
+  --card: #161616;
+  --card-foreground: #ededed;
+  --muted: #212121;
+  --muted-foreground: #a1a1aa;
+  --border: #2b2b2b;
+  --accent: #3987e5;
+  --accent-foreground: #ffffff;
+  --accent-soft: #14243a;
+  --ring: #5598e7;
+
+  --series-1: #3987e5;
+  --series-2: #199e70;
+  --series-3: #c98500;
+  --series-4: #008300;
+  --series-5: #9085e9;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-ring: var(--ring);
+  --color-series-1: var(--series-1);
+  --color-series-2: var(--series-2);
+  --color-series-3: var(--series-3);
+  --color-series-4: var(--series-4);
+  --color-series-5: var(--series-5);
+
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+}
+
+/* Tailwind v4 dark: variant keyed to the .dark class set pre-hydration */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem; /* keep anchored sections clear of the sticky bar */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Figures read as figures everywhere */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Section reveal — a single transition, disabled with reduced motion */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  /* Paper is always light — override dark-mode tokens so text stays ink-dark. */
+  :root,
+  .dark {
+    --background: #ffffff;
+    --foreground: #111111;
+    --card: #ffffff;
+    --card-foreground: #111111;
+    --muted: #f4f4f5;
+    --muted-foreground: #52525b;
+    --border: #d4d4d8;
+    --accent: #1c5cab;
+    --accent-foreground: #ffffff;
+    --accent-soft: #eaf2fc;
+  }
+}
