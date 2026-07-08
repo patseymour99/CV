@@ -34,8 +34,8 @@ export const knowledge: KnowledgeChunk[] = [
   {
     id: "blackrock-launches",
     topic: "experience",
-    text: "Patrick took new hedge fund and active ETF products from concept to launch at BlackRock — positioning, narrative, sales enablement, and client alignment — working in lockstep with portfolio managers and senior leadership. He also writes RFPs, whitepapers, and portfolio commentary translating complex AI investment theses for institutional investors.",
-    keywords: ["launch", "hedge", "fund", "etf", "product", "positioning", "narrative", "rfp", "whitepaper", "commentary", "writing"],
+    text: "Patrick launched BAI, BlackRock's flagship AI active ETF, taking it from concept to market — positioning, narrative, sales enablement, and client alignment — and helped scale it to more than $16bn in assets in under two years. He also took a new hedge fund from concept to launch, and writes RFPs, whitepapers, and portfolio commentary translating complex AI investment theses for institutional investors.",
+    keywords: ["bai", "launch", "hedge", "fund", "etf", "flagship", "16bn", "product", "positioning", "narrative", "rfp", "whitepaper", "commentary", "writing", "scale"],
   },
   {
     id: "asimov",
@@ -46,8 +46,8 @@ export const knowledge: KnowledgeChunk[] = [
   {
     id: "gainpro",
     topic: "experience",
-    text: "From July 2022 to July 2023, Patrick was a Senior Research Analyst in Private Equity at Gain.pro in London. He expanded an AI-powered private-markets intelligence platform into three new regions — UK, Nordics, and CEE — built research coverage of Hungary, Croatia, and Serbia from the ground up (used directly by private equity clients in deal sourcing and diligence), and mentored junior analysts.",
-    keywords: ["gain", "gainpro", "private", "equity", "research", "analyst", "nordics", "cee", "hungary", "croatia", "serbia", "coverage", "intelligence", "mentored"],
+    text: "From July 2022 to July 2023, Patrick was a Senior Research Analyst in Private Equity at Gain.AI in London. He expanded an AI-powered private-markets intelligence platform into three new regions — UK, Nordics, and CEE — built research coverage of Hungary, Croatia, and Serbia from the ground up (used directly by private equity clients in deal sourcing and diligence), and mentored junior analysts.",
+    keywords: ["gain", "gainai", "private", "equity", "research", "analyst", "nordics", "cee", "hungary", "croatia", "serbia", "coverage", "intelligence", "mentored"],
   },
   {
     id: "morgan-stanley",
@@ -82,7 +82,7 @@ export const knowledge: KnowledgeChunk[] = [
   {
     id: "education-corvinus",
     topic: "education",
-    text: "Patrick holds a BA in Business Management & Administration from Corvinus University of Budapest with a first-class equivalent grade (4.71). His thesis on the impact of blockchain on the asset management industry was graded 99% — written in 2022, before tokenised funds went mainstream.",
+    text: "Patrick holds a BA in Business Management & Administration from Corvinus University of Budapest with a first-class equivalent grade (4.71). His thesis on the impact of blockchain on the asset management industry was graded 99%.",
     keywords: ["education", "degree", "university", "corvinus", "budapest", "thesis", "blockchain", "grade", "studied", "study"],
   },
   {
@@ -125,6 +125,7 @@ export const knowledge: KnowledgeChunk[] = [
 
 export const suggestedQuestions: SuggestedQuestion[] = [
   { label: "Role at BlackRock", question: "What does Patrick do at BlackRock?" },
+  { label: "The BAI ETF", question: "Tell me about the BAI ETF Patrick launched." },
   { label: "What is Asimov?", question: "What is Asimov, the AI platform Patrick is building?" },
   { label: "Fit for an AI lab", question: "Why would Patrick be a strong hire for a frontier AI lab?" },
   { label: "Technical toolkit", question: "What are Patrick's technical skills?" },

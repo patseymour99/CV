@@ -76,7 +76,7 @@ const INTENT_PATTERNS: Array<[Intent, RegExp]> = [
   ["skills", /\b(skills?|stack|tools?|technolog|proficien|languages?|sql|vba|tableau|python|coding|technical|prompt)\b/i],
   ["achievements", /\b(achieve|award|highlight|accomplish|proud|certification|mifid)\b/i],
   ["personal", /\b(hobbies|hobby|interests?|volunteer|tennis|chess|fun|outside work|personal|nepal|cambodia|languages)\b/i],
-  ["experience", /\b(experience|work(ed)?|role|job|career|blackrock|gain\.?pro|morgan|stanley|company|companies|employer|history|do(es)? .*(now|currently)|current)\b/i],
+  ["experience", /\b(experience|work(ed)?|role|job|career|blackrock|gain(\.\w+)?|morgan|stanley|bai|etf|company|companies|employer|history|do(es)? .*(now|currently)|current)\b/i],
   ["summary", /\b(who is|about|overview|summary|background|introduce|elevator|profile)\b/i],
 ];
 

@@ -98,7 +98,7 @@ export function CareerTimeline() {
         id="timeline"
         index="01"
         title="Career timeline"
-        subtitle="Every bar is clickable — it opens the full story below. Built by hand in SVG, no chart library."
+        subtitle="Every bar is clickable — it opens the full story below."
       />
       <Reveal>
         <div ref={containerRef} className="relative rounded-2xl border border-border bg-card p-4 sm:p-6">

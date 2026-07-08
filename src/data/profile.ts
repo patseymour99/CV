@@ -20,8 +20,8 @@ export const profile: Profile = {
 
   stats: [
     { label: "AI-dedicated AUM represented", value: 60, prefix: "$", suffix: "bn" },
+    { label: "BAI ETF — scaled in under 2 years", value: 16, prefix: "$", suffix: "bn+" },
     { label: "Markets launched from scratch", value: 3 },
-    { label: "Fund products taken to launch", value: 2 },
     { label: "Years across finance & tech", value: 7, suffix: "+" },
   ],
 
@@ -41,26 +41,25 @@ export const profile: Profile = {
           metric: "~$60bn AUM",
         },
         {
+          text: "Launched BAI, BlackRock's flagship AI active ETF, from concept to market — positioning, narrative, sales enablement, and client alignment — and helped scale it to more than $16bn in under two years, alongside a new hedge fund launch.",
+          metric: ">$16bn in <2 yrs",
+        },
+        {
           text: "Building Asimov, an agentic AI platform for BlackRock's entire Product Strategy division — automating the division's core client and portfolio workflows — while driving LLM adoption as a core member of the Fundamental Equities GenAI workgroup.",
-          metric: "1 division-wide AI platform",
+          metric: "in daily use",
         },
         {
           text: "Operate as the sole London presence of an SF-headquartered team, trusted to run EMEA client engagement autonomously: institutional pitches, consultant due diligence, and AI market-outlook briefings across a full time-zone divide.",
-          metric: "EMEA run solo",
         },
         {
-          text: "Took new hedge fund and active ETF products from concept to launch — positioning, narrative, sales enablement, and client alignment — in lockstep with portfolio managers and senior leadership.",
-          metric: "2 launches",
-        },
-        {
-          text: "Translate complex AI investment theses into commercial narratives — RFPs, whitepapers, and portfolio commentary — for the world's most demanding institutional investors.",
+          text: "Translate complex AI investment theses into commercial narratives — RFPs, whitepapers, and portfolio commentary — for global institutional investors.",
         },
       ],
       tags: ["agentic-ai", "gtm", "client-engagement", "product-launch", "ai-ecosystem", "communication"],
     },
     {
       id: "gainpro",
-      company: "Gain.pro",
+      company: "Gain.AI",
       role: "Senior Research Analyst, Private Equity",
       location: "London",
       start: "2022-07",
@@ -163,8 +162,8 @@ export const profile: Profile = {
       category: "AI & Agentic Systems",
       skills: [
         { name: "Agent workflow design", level: 5, tags: ["agentic-ai"] },
-        { name: "Prompt engineering", level: 5, tags: ["agentic-ai"] },
-        { name: "LLM use-case scoping", level: 5, tags: ["agentic-ai"] },
+        { name: "Prompt engineering", level: 4, tags: ["agentic-ai"] },
+        { name: "LLM use-case scoping", level: 4, tags: ["agentic-ai"] },
         { name: "AI ecosystem & unit economics", level: 4, tags: ["ai-ecosystem"] },
       ],
     },
@@ -218,7 +217,7 @@ export const profile: Profile = {
       id: "blockchain-thesis",
       name: "Blockchain × Asset Management Thesis",
       description:
-        "Undergraduate thesis on the impact of blockchain on the asset management industry — written in 2022, before tokenised funds went mainstream.",
+        "Undergraduate thesis on the impact of blockchain on the asset management industry.",
       impact: "Graded 99%.",
       tech: ["Research", "Market analysis"],
       tags: ["research", "ai-ecosystem"],
