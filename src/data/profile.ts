@@ -115,24 +115,6 @@ export const profile: Profile = {
       ],
       tags: ["founder", "product-launch", "gtm", "leadership"],
     },
-    {
-      id: "volunteering",
-      company: "Cambodia & Nepal",
-      role: "Volunteer, School Development",
-      start: "2015-03",
-      end: "2017-08",
-      summary:
-        "Self-funded expeditions developing schools, housing, and an orphanage.",
-      highlights: [
-        {
-          text: "Cambodia: four-week expedition developing a school and local housing within a village community.",
-        },
-        {
-          text: "Nepal: trekked to Everest base camp and restored an orphanage and a school; self-funded and fundraised the resources for both expeditions.",
-        },
-      ],
-      tags: ["leadership", "impact"],
-    },
   ],
 
   education: [
@@ -203,13 +185,13 @@ export const profile: Profile = {
       tags: ["agentic-ai", "product-launch"],
     },
     {
-      id: "cv-dashboard",
-      name: "This Dashboard",
+      id: "team-profiles",
+      name: "Team Personality Profiles",
       description:
-        "The site you're reading — an interactive CV with a hybrid AI chat: a streaming Claude-powered assistant grounded strictly in this CV, with a hand-built client-side retrieval engine as automatic fallback.",
-      impact: "Designed, built, and shipped end to end.",
-      tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind 4", "Anthropic SDK"],
-      tags: ["agentic-ai", "technical"],
+        "An AI tool that scans the team's emails, chats, and documents and reads the work across four dimensions — commercial focus, analytical rigour, clarity, and responsiveness — mapping how each person's personality translates into their work.",
+      impact: "Used to position people around their strengths.",
+      tech: ["LLM analysis", "Prompt engineering", "Data pipelines"],
+      tags: ["agentic-ai", "leadership", "data"],
     },
     {
       id: "blockchain-thesis",
@@ -251,6 +233,12 @@ export const profile: Profile = {
       id: "mifid",
       title: "MiFID II Knowledge & Competence",
       detail: "In progress.",
+    },
+    {
+      id: "volunteering",
+      title: "Volunteering — Cambodia & Nepal",
+      detail: "Self-funded school-development expeditions; Everest base camp trek and orphanage restoration.",
+      year: "2015–17",
     },
     {
       id: "languages",

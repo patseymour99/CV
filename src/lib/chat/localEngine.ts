@@ -72,7 +72,7 @@ const INTENT_PATTERNS: Array<[Intent, RegExp]> = [
   ["contact", /\b(contact|email|phone|reach|call|touch|connect|interview|meet)\b/i],
   ["availability", /\b(available|availability|looking for|open to|hiring|notice period|start date|fit for|why (should|would).*(hire|good))\b/i],
   ["education", /\b(education|degree|university|college|school|study|studied|thesis|grades?|academic)\b/i],
-  ["projects", /\b(project|built|build|asimov|dashboard|site|website|portfolio|startup|achillbox)\b/i],
+  ["projects", /\b(project|built|build|asimov|dashboard|site|website|portfolio|startup|achillbox|personality|profiles?)\b/i],
   ["skills", /\b(skills?|stack|tools?|technolog|proficien|languages?|sql|vba|tableau|python|coding|technical|prompt)\b/i],
   ["achievements", /\b(achieve|award|highlight|accomplish|proud|certification|mifid)\b/i],
   ["personal", /\b(hobbies|hobby|interests?|volunteer|tennis|chess|fun|outside work|personal|nepal|cambodia|languages)\b/i],

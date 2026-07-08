@@ -44,6 +44,12 @@ export const knowledge: KnowledgeChunk[] = [
     keywords: ["asimov", "agentic", "platform", "built", "building", "genai", "workgroup", "llm", "adoption", "automation", "agent", "shipping"],
   },
   {
+    id: "team-profiles",
+    topic: "projects",
+    text: "Patrick built Team Personality Profiles, an AI tool that scans the team's emails, chats, and documents and reads the work across four dimensions — commercial focus, analytical rigour, clarity, and responsiveness. It maps how each person's personality translates into their work, and is used to position people around their strengths.",
+    keywords: ["team", "personality", "profiles", "profile", "emails", "chats", "documents", "scans", "strengths", "commercial", "rigour", "clarity", "responsiveness", "tool", "people"],
+  },
+  {
     id: "gainpro",
     topic: "experience",
     text: "From July 2022 to July 2023, Patrick was a Senior Research Analyst in Private Equity at Gain.AI in London. He expanded an AI-powered private-markets intelligence platform into three new regions — UK, Nordics, and CEE — built research coverage of Hungary, Croatia, and Serbia from the ground up (used directly by private equity clients in deal sourcing and diligence), and mentored junior analysts.",
@@ -118,7 +124,7 @@ export const knowledge: KnowledgeChunk[] = [
   {
     id: "this-site",
     topic: "projects",
-    text: "This dashboard is itself one of Patrick's projects: an interactive CV built with Next.js 16, React 19, TypeScript, and Tailwind 4. The chat you're using is hybrid — a streaming Claude-powered assistant grounded strictly in his CV, with a hand-built client-side retrieval engine that takes over automatically if the API is unavailable.",
+    text: "Patrick designed and built this dashboard himself: an interactive CV built with Next.js 16, React 19, TypeScript, and Tailwind 4. The chat you're using is hybrid — a streaming Claude-powered assistant grounded strictly in his CV, with a hand-built client-side retrieval engine that takes over automatically if the API is unavailable.",
     keywords: ["site", "dashboard", "website", "chat", "assistant", "built", "how", "works", "nextjs", "react", "claude"],
   },
 ];

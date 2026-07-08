@@ -17,7 +17,7 @@ export function ProjectsSection() {
         id="projects"
         index="04"
         title="Projects"
-        subtitle="Things built, shipped, and owned — including the site you're reading."
+        subtitle="Things built, shipped, and owned."
       />
       <div className="grid gap-4 sm:grid-cols-2">
         {profile.projects.map((project, i) => {
