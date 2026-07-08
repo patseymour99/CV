@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useDashboard } from "@/components/shell/DashboardContext";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -8,9 +7,20 @@ import { profile } from "@/data/profile";
 import type { Skill } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const LEVEL_LABELS = ["", "Familiar", "Working", "Proficient", "Advanced", "Expert"];
+/** Renders the **bold** spans in a proof line — no markdown dependency. */
+function renderProof(text: string): React.ReactNode[] {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={i} className="font-semibold text-foreground">
+        {part.slice(2, -2)}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
 
-function SkillRow({ skill }: { skill: Skill }) {
+function SkillChip({ skill }: { skill: Skill }) {
   const { activeTag, setActiveTag } = useDashboard();
   const selected = activeTag !== null && skill.tags.includes(activeTag);
   const dimmed = activeTag !== null && !selected;
@@ -19,44 +29,22 @@ function SkillRow({ skill }: { skill: Skill }) {
     <button
       type="button"
       onClick={() => setActiveTag(selected ? null : skill.tags[0])}
-      title={
-        selected
-          ? "Clear highlight"
-          : "Highlight the roles and projects that use this skill"
-      }
+      title={selected ? "Clear highlight" : "See where this was earned"}
       className={cn(
-        "w-full rounded-lg px-3 py-2 text-left transition-all duration-300 hover:bg-muted",
-        selected && "bg-accent-soft",
+        "rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium transition-all duration-300",
+        selected
+          ? "border-accent bg-accent text-accent-foreground"
+          : "hover:border-accent hover:text-accent",
         dimmed && "opacity-40"
       )}
     >
-      <span className="flex items-baseline justify-between gap-3">
-        <span className="text-sm font-medium">{skill.name}</span>
-        <span className="shrink-0 font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
-          {LEVEL_LABELS[skill.level]}
-        </span>
-      </span>
-      {/* 5-segment proficiency bar, 2px gaps between segments */}
-      <span className="mt-1.5 flex gap-0.5" aria-label={`${LEVEL_LABELS[skill.level]}, ${skill.level} of 5`}>
-        {Array.from({ length: 5 }, (_, i) => (
-          <span
-            key={i}
-            className={cn(
-              "h-1.5 flex-1 rounded-full transition-colors duration-300",
-              i < skill.level ? "bg-accent" : "bg-muted"
-            )}
-          />
-        ))}
-      </span>
+      {skill.name}
     </button>
   );
 }
 
 export function SkillsSection() {
   const { activeTag, setActiveTag } = useDashboard();
-  const categories = profile.skills.map((c) => c.category);
-  const [filter, setFilter] = useState<string | null>(null);
-  const visible = filter ? profile.skills.filter((c) => c.category === filter) : profile.skills;
 
   return (
     <section className="mt-24">
@@ -64,61 +52,40 @@ export function SkillsSection() {
         id="skills"
         index="03"
         title="Skills"
-        subtitle="Click any skill to light up where it was earned — matching roles and projects stay lit, the rest fade."
+        subtitle="Every skill is clickable — it lights up the roles and projects where it was earned."
       />
-      <Reveal>
-        <div className="mb-5 flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setFilter(null)}
-            className={cn(
-              "rounded-full border border-border px-3 py-1 text-xs font-medium transition-colors",
-              filter === null ? "border-accent bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground"
-            )}
-          >
-            All
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setFilter(filter === category ? null : category)}
-              className={cn(
-                "rounded-full border border-border px-3 py-1 text-xs font-medium transition-colors",
-                filter === category
-                  ? "border-accent bg-accent text-accent-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+      <div className="space-y-4">
+        {profile.skills.map((category, i) => (
+          <Reveal key={category.category} delay={i * 60}>
+            <div className="rounded-2xl border border-border bg-card p-5 sm:p-6">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                  {category.category}
+                </h3>
+                {i === 0 && activeTag && (
+                  <button
+                    type="button"
+                    onClick={() => setActiveTag(null)}
+                    className="rounded-full bg-accent-soft px-3 py-1 font-mono text-xs text-accent"
+                  >
+                    highlighting: {activeTag} ✕
+                  </button>
+                )}
+              </div>
+              {category.proof && (
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {renderProof(category.proof)}
+                </p>
               )}
-            >
-              {category}
-            </button>
-          ))}
-          {activeTag && (
-            <button
-              type="button"
-              onClick={() => setActiveTag(null)}
-              className="ml-auto rounded-full bg-accent-soft px-3 py-1 font-mono text-xs text-accent"
-            >
-              highlighting: {activeTag} ✕
-            </button>
-          )}
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {visible.map((category) => (
-            <div key={category.category} className="rounded-2xl border border-border bg-card p-4">
-              <h3 className="mb-2 px-3 font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                {category.category}
-              </h3>
-              <div className="space-y-1">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <SkillRow key={skill.name} skill={skill} />
+                  <SkillChip key={skill.name} skill={skill} />
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-      </Reveal>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

@@ -69,13 +69,14 @@ export interface Education {
 
 export interface SkillCategory {
   category: string;
+  /** One-line evidence for the group — outcomes, not self-ratings. Supports **bold**. */
+  proof?: string;
   skills: Skill[];
 }
 
 export interface Skill {
   name: string;
-  /** 1 (familiar) – 5 (expert). Rendered as a 5-segment bar. */
-  level: 1 | 2 | 3 | 4 | 5;
+  /** Shared vocabulary with experience/projects — powers cross-highlighting. */
   tags: string[];
 }
 

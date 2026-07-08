@@ -159,37 +159,35 @@ export const profile: Profile = {
 
   skills: [
     {
-      category: "AI & Agentic Systems",
+      category: "AI & Agentic",
+      proof:
+        "Shipped to production at BlackRock — **Asimov**, agent workflows in daily use — plus this site's hybrid AI chat.",
       skills: [
-        { name: "Agent workflow design", level: 5, tags: ["agentic-ai"] },
-        { name: "Prompt engineering", level: 4, tags: ["agentic-ai"] },
-        { name: "LLM use-case scoping", level: 4, tags: ["agentic-ai"] },
-        { name: "AI ecosystem & unit economics", level: 4, tags: ["ai-ecosystem"] },
+        { name: "Agent workflow design", tags: ["agentic-ai"] },
+        { name: "Prompt engineering", tags: ["agentic-ai"] },
+        { name: "AI ecosystem & unit economics", tags: ["ai-ecosystem"] },
       ],
     },
     {
       category: "Commercial & GTM",
+      proof:
+        "Launched **BAI** and helped scale it past **$16bn** in under two years; runs EMEA engagement for a **$60bn** AI franchise.",
       skills: [
-        { name: "Institutional sales & IR", level: 5, tags: ["client-engagement", "gtm"] },
-        { name: "Product positioning & launch", level: 5, tags: ["product-launch", "gtm"] },
-        { name: "RFPs & technical writing", level: 5, tags: ["communication"] },
-        { name: "Due diligence & market research", level: 4, tags: ["research"] },
+        { name: "Institutional sales & IR", tags: ["client-engagement", "gtm"] },
+        { name: "Product positioning & launch", tags: ["product-launch", "gtm"] },
+        { name: "RFPs & technical writing", tags: ["communication"] },
+        { name: "Due diligence & market research", tags: ["research"] },
+        { name: "Institutional asset management", tags: ["client-engagement", "ai-ecosystem"] },
+        { name: "Private markets", tags: ["private-markets", "research"] },
       ],
     },
     {
-      category: "Data & Technical",
+      category: "Data & Tools",
+      proof: "The working toolkit behind the research, automation, and reporting above.",
       skills: [
-        { name: "SQL", level: 4, tags: ["data", "technical"] },
-        { name: "VBA & Excel automation", level: 4, tags: ["automation", "technical"] },
-        { name: "Tableau", level: 3, tags: ["data"] },
-        { name: "Power BI", level: 3, tags: ["data"] },
-      ],
-    },
-    {
-      category: "Domain",
-      skills: [
-        { name: "Institutional asset management", level: 5, tags: ["client-engagement", "ai-ecosystem"] },
-        { name: "Private markets", level: 4, tags: ["private-markets", "research"] },
+        { name: "SQL", tags: ["data", "technical"] },
+        { name: "VBA & Excel automation", tags: ["automation", "technical"] },
+        { name: "Tableau & Power BI", tags: ["data"] },
       ],
     },
   ],
