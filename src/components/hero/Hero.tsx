@@ -17,9 +17,14 @@ export function Hero() {
   return (
     <section className="pt-14 sm:pt-20">
       <Reveal>
-        <p className="font-mono text-sm text-accent">{profile.title}</p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">{profile.name}</h1>
-        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.18em] text-accent sm:text-sm">
+          <span aria-hidden className="h-px w-8 bg-accent" />
+          {profile.title}
+        </p>
+        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
+          {profile.name}
+        </h1>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-pretty text-muted-foreground sm:text-lg">
           {profile.summary}
         </p>
       </Reveal>
@@ -49,14 +54,14 @@ export function Hero() {
           <button
             type="button"
             onClick={() => openChat()}
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground shadow-md shadow-accent/25 transition hover:opacity-90 active:scale-[0.98]"
           >
             <MessageCircle className="h-4 w-4" />
             Ask the AI about me
           </button>
           <a
             href="#experience"
-            className="inline-flex items-center rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+            className="inline-flex items-center rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition hover:border-accent/40 hover:bg-muted active:scale-[0.98]"
           >
             Explore the CV
           </a>

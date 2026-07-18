@@ -51,7 +51,7 @@ export function ChatDock() {
         onClick={() => (chatOpen ? closeChat() : openChat())}
         aria-label={chatOpen ? "Close chat" : "Ask AI about me"}
         className={cn(
-          "fixed bottom-5 right-5 z-50 flex h-13 w-13 items-center justify-center rounded-full bg-accent p-4 text-accent-foreground shadow-lg transition-transform hover:scale-105",
+          "fixed bottom-5 right-5 z-50 flex h-13 w-13 items-center justify-center rounded-full bg-accent p-4 text-accent-foreground shadow-lg shadow-accent/30 transition-transform hover:scale-105 active:scale-95",
           chatOpen && "max-sm:hidden"
         )}
       >

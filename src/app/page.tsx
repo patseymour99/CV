@@ -8,6 +8,7 @@ import { SkillsSection } from "@/components/skills/SkillsSection";
 import { ProjectsSection } from "@/components/projects/ProjectsSection";
 import { EducationSection } from "@/components/education/EducationSection";
 import { ChatDock } from "@/components/chat/ChatDock";
+import { Kbd } from "@/components/ui/Kbd";
 import { profile } from "@/data/profile";
 
 export default function Page() {
@@ -23,16 +24,23 @@ export default function Page() {
           <ProjectsSection />
           <EducationSection />
         </main>
-        <footer className="no-print border-t border-border py-8">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 text-sm text-muted-foreground sm:px-6">
-            <p>
-              Designed and built by {profile.name} — Next.js, React, TypeScript, Tailwind, and the
-              Anthropic API.
-            </p>
-            <p className="font-mono text-xs">
-              Tip: press <span className="text-foreground">⌘K</span> to search, or ask the AI
-              anything about me.
-            </p>
+        <footer className="no-print border-t border-border py-10">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 sm:flex-row sm:items-end sm:justify-between sm:px-6">
+            <div className="flex flex-col gap-1.5 text-sm text-muted-foreground">
+              <p>
+                Designed and built by {profile.name} — Next.js, React, TypeScript, Tailwind, and the
+                Anthropic API.
+              </p>
+              <p className="font-mono text-xs">
+                Tip: press <Kbd>⌘K</Kbd> to search, or ask the AI anything about me.
+              </p>
+            </div>
+            <a
+              href="#top"
+              className="inline-flex items-center gap-1.5 self-start text-sm text-muted-foreground transition-colors hover:text-foreground sm:self-auto"
+            >
+              Back to top ↑
+            </a>
           </div>
         </footer>
         <CommandPalette />

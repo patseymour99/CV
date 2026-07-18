@@ -51,13 +51,20 @@ export function StatCounter({ stat }: { stat: Stat }) {
   }, [stat.value]);
 
   return (
-    <div ref={ref} className="rounded-2xl border border-border bg-card p-4 sm:p-5">
+    <div
+      ref={ref}
+      className="relative overflow-hidden rounded-2xl border border-border bg-card p-4 transition duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/5 sm:p-5"
+    >
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent/60 via-accent/15 to-transparent"
+      />
       <p className="font-mono text-2xl font-semibold tracking-tight tnum sm:text-3xl">
         {stat.prefix}
         {done ? stat.value : display}
         {stat.suffix}
       </p>
-      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{stat.label}</p>
+      <p className="mt-1.5 text-xs leading-snug text-muted-foreground sm:text-sm">{stat.label}</p>
     </div>
   );
 }

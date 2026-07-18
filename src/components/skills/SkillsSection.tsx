@@ -31,9 +31,9 @@ function SkillChip({ skill }: { skill: Skill }) {
       onClick={() => setActiveTag(selected ? null : skill.tags[0])}
       title={selected ? "Clear highlight" : "See where this was earned"}
       className={cn(
-        "rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium transition-all duration-300",
+        "rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium transition-all duration-300 active:scale-95",
         selected
-          ? "border-accent bg-accent text-accent-foreground"
+          ? "border-accent bg-accent text-accent-foreground shadow-md shadow-accent/25"
           : "hover:border-accent hover:text-accent",
         dimmed && "opacity-40"
       )}

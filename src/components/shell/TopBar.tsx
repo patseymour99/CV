@@ -20,9 +20,20 @@ export function TopBar() {
   const { theme, toggle } = useTheme();
   const { openChat, setPaletteOpen } = useDashboard();
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    // Scrollspy: the active section is the last heading above ~1/3 viewport.
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const cutoff = window.scrollY + window.innerHeight * 0.35;
+      let current: string | null = null;
+      for (const item of NAV) {
+        const el = document.getElementById(item.href.slice(1));
+        if (el && el.offsetTop <= cutoff) current = item.href;
+      }
+      setActiveSection(current);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -36,8 +47,8 @@ export function TopBar() {
   return (
     <header
       className={cn(
-        "no-print sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur transition-colors",
-        scrolled && "border-border"
+        "no-print sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur transition-[border-color,box-shadow]",
+        scrolled && "border-border shadow-sm shadow-black/5 dark:shadow-black/20"
       )}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
@@ -49,15 +60,24 @@ export function TopBar() {
         </a>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Sections">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV.map((item) => {
+            const active = activeSection === item.href;
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "true" : undefined}
+                className={cn(
+                  "relative rounded-md px-3 py-1.5 text-sm transition-colors hover:bg-muted hover:text-foreground",
+                  active
+                    ? "text-foreground after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-accent"
+                    : "text-muted-foreground"
+                )}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-1.5">

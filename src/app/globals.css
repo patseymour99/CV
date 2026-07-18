@@ -84,6 +84,26 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Ambient depth — two soft accent glows behind everything. Fixed so it
+   doesn't repaint on scroll; z-index keeps it under all content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(55rem 30rem at 85% -12%, color-mix(in oklab, var(--accent) 8%, transparent), transparent 70%),
+    radial-gradient(40rem 26rem at -8% 4%, color-mix(in oklab, var(--accent) 5%, transparent), transparent 70%);
+}
+
+/* One consistent keyboard focus treatment everywhere */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--accent-foreground);
@@ -125,6 +145,9 @@ body {
 @media print {
   .no-print {
     display: none !important;
+  }
+  body::before {
+    display: none;
   }
   /* Paper is always light — override dark-mode tokens so text stays ink-dark. */
   :root,

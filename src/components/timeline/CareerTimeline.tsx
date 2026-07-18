@@ -121,6 +121,7 @@ export function CareerTimeline() {
                     y2={height - AXIS_HEIGHT}
                     stroke="var(--border)"
                     strokeWidth={1}
+                    strokeOpacity={0.6}
                   />
                   {labeled && (
                     <text
@@ -148,7 +149,7 @@ export function CareerTimeline() {
                     role="listitem"
                     tabIndex={0}
                     aria-label={`${exp.role} at ${exp.company}, ${formatMonth(exp.start)} to ${formatMonth(exp.end)}. Press Enter for details.`}
-                    className="cursor-pointer outline-none focus-visible:opacity-80"
+                    className="group cursor-pointer outline-none focus-visible:opacity-80"
                     onClick={() => focusExperience(exp.id)}
                     onKeyDown={(event) => {
                       if (event.key === "Enter" || event.key === " ") {
@@ -185,6 +186,7 @@ export function CareerTimeline() {
                       opacity={active ? 1 : 0.85}
                       stroke={active ? "var(--foreground)" : "var(--card)"}
                       strokeWidth={active ? 1.5 : 2}
+                      className="transition-opacity duration-200 group-hover:opacity-100"
                     />
                     {ongoing && (
                       <circle

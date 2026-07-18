@@ -15,7 +15,10 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
     <article
       id={`experience-${exp.id}`}
       className={cn(
-        "scroll-mt-24 rounded-2xl border border-border bg-card transition-opacity duration-300",
+        "scroll-mt-24 rounded-2xl border border-border bg-card transition duration-300",
+        expanded
+          ? "border-accent/40 shadow-lg shadow-accent/5"
+          : "hover:border-accent/30 hover:shadow-md hover:shadow-accent/5",
         dimmed && "opacity-35"
       )}
     >
@@ -49,12 +52,15 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
           </span>
           <span className="mt-2 block text-sm text-muted-foreground">{exp.summary}</span>
         </span>
-        <ChevronDown
+        <span
           className={cn(
-            "mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300",
-            expanded && "rotate-180"
+            "mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition duration-300",
+            expanded && "rotate-180 border-accent/40 bg-accent-soft text-accent"
           )}
-        />
+          aria-hidden
+        >
+          <ChevronDown className="h-4 w-4" />
+        </span>
       </button>
 
       {/* Height animation via the grid-rows 0fr→1fr trick — no measuring. */}
