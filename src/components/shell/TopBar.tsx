@@ -20,9 +20,25 @@ export function TopBar() {
   const { theme, toggle } = useTheme();
   const { openChat, setPaletteOpen } = useDashboard();
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+
+      // Scrollspy: the last section whose top has passed the sticky bar.
+      let current: string | null = null;
+      for (const item of NAV) {
+        const el = document.getElementById(item.href.slice(1));
+        if (el && el.getBoundingClientRect().top <= 96) current = item.href;
+      }
+      setActiveSection(current);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -53,7 +69,13 @@ export function TopBar() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              aria-current={activeSection === item.href ? "true" : undefined}
+              className={cn(
+                "rounded-md px-3 py-1.5 text-sm transition-colors",
+                activeSection === item.href
+                  ? "bg-muted text-foreground"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              )}
             >
               {item.label}
             </a>
@@ -98,6 +120,13 @@ export function TopBar() {
           </button>
         </div>
       </div>
+
+      {/* Reading progress — hairline pinned to the bar's bottom edge */}
+      <span
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 block h-0.5 origin-left bg-accent"
+        style={{ transform: `scaleX(${progress})` }}
+      />
     </header>
   );
 }

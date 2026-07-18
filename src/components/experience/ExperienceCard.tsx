@@ -15,7 +15,8 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
     <article
       id={`experience-${exp.id}`}
       className={cn(
-        "scroll-mt-24 rounded-2xl border border-border bg-card transition-opacity duration-300",
+        "scroll-mt-24 rounded-2xl border border-border bg-card shadow-card transition-all duration-300",
+        expanded ? "border-accent/40 shadow-lift" : "hover:border-accent/30",
         dimmed && "opacity-35"
       )}
     >

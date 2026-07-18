@@ -51,13 +51,23 @@ export function StatCounter({ stat }: { stat: Stat }) {
   }, [stat.value]);
 
   return (
-    <div ref={ref} className="rounded-2xl border border-border bg-card p-4 sm:p-5">
-      <p className="font-mono text-2xl font-semibold tracking-tight tnum sm:text-3xl">
+    <div
+      ref={ref}
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-lift sm:p-5"
+    >
+      {/* Soft accent bloom in the corner — brightens on hover */}
+      <span
+        aria-hidden
+        className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-accent-soft opacity-60 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
+      />
+      <p className="relative font-mono text-2xl font-semibold tracking-tight tnum sm:text-3xl">
         {stat.prefix}
         {done ? stat.value : display}
         {stat.suffix}
       </p>
-      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{stat.label}</p>
+      <p className="relative mt-1.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+        {stat.label}
+      </p>
     </div>
   );
 }

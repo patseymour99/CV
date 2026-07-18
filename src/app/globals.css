@@ -24,6 +24,10 @@
   --series-3: #eda100;
   --series-4: #008300;
   --series-5: #4a3aa7;
+
+  /* Elevation — soft ambient shadow at rest, deeper on hover */
+  --card-shadow: 0 1px 2px rgb(23 23 23 / 0.04), 0 8px 24px -12px rgb(23 23 23 / 0.1);
+  --card-shadow-hover: 0 2px 4px rgb(23 23 23 / 0.05), 0 16px 32px -12px rgb(23 23 23 / 0.16);
 }
 
 .dark {
@@ -44,6 +48,9 @@
   --series-3: #c98500;
   --series-4: #008300;
   --series-5: #9085e9;
+
+  --card-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  --card-shadow-hover: 0 2px 4px rgb(0 0 0 / 0.45), 0 16px 32px -12px rgb(0 0 0 / 0.6);
 }
 
 @theme inline {
@@ -63,6 +70,9 @@
   --color-series-3: var(--series-3);
   --color-series-4: var(--series-4);
   --color-series-5: var(--series-5);
+
+  --shadow-card: var(--card-shadow);
+  --shadow-lift: var(--card-shadow-hover);
 
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
@@ -92,6 +102,40 @@ body {
 /* Figures read as figures everywhere */
 .tnum {
   font-variant-numeric: tabular-nums;
+}
+
+/* ── Hero backdrop ────────────────────────────────────────────────────
+   A faint blueprint grid fading out from the top edge, plus a soft
+   accent glow behind the headline. Decorative only: pointer-events off,
+   negative z so it always sits behind content, hidden in print. */
+.hero-backdrop {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 36rem;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -10;
+}
+.hero-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.5;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 20%, transparent 72%);
+}
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 40rem 22rem at 24% 0%,
+    color-mix(in oklab, var(--accent) 13%, transparent),
+    transparent 70%
+  );
 }
 
 /* Section reveal — a single transition, disabled with reduced motion */

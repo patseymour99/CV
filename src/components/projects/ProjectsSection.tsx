@@ -26,7 +26,7 @@ export function ProjectsSection() {
             <Reveal key={project.id} delay={i * 60}>
               <article
                 className={cn(
-                  "flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-opacity duration-300 sm:p-6",
+                  "group flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-lift sm:p-6",
                   dimmed && "opacity-35"
                 )}
               >
@@ -38,7 +38,7 @@ export function ProjectsSection() {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={`Open ${project.name}`}
-                      className="text-muted-foreground transition-colors hover:text-accent"
+                      className="text-muted-foreground transition-all hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
                     >
                       <ArrowUpRight className="h-4 w-4" />
                     </a>
