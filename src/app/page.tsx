@@ -13,9 +13,10 @@ import { profile } from "@/data/profile";
 export default function Page() {
   return (
     <DashboardProvider>
-      <div id="top">
+      <div id="top" className="relative">
+        <div className="hero-canvas no-print" aria-hidden />
         <TopBar />
-        <main className="mx-auto max-w-6xl px-4 pb-32 sm:px-6">
+        <main className="relative mx-auto max-w-6xl px-4 pb-32 sm:px-6">
           <Hero />
           <CareerTimeline />
           <ExperienceSection />
@@ -23,15 +24,15 @@ export default function Page() {
           <ProjectsSection />
           <EducationSection />
         </main>
-        <footer className="no-print border-t border-border py-8">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 text-sm text-muted-foreground sm:px-6">
+        <footer className="no-print border-t border-border py-10">
+          <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
             <p>
-              Designed and built by {profile.name} — Next.js, React, TypeScript, Tailwind, and the
-              Anthropic API.
+              Designed and built by <span className="font-medium text-foreground">{profile.name}</span> —
+              Next.js, React, TypeScript, Tailwind, and the Anthropic API.
             </p>
-            <p className="font-mono text-xs">
-              Tip: press <span className="text-foreground">⌘K</span> to search, or ask the AI
-              anything about me.
+            <p className="shrink-0 font-mono text-xs">
+              <span className="rounded border border-border bg-muted px-1.5 py-0.5 text-foreground">⌘K</span>{" "}
+              to search · ask the AI anything
             </p>
           </div>
         </footer>

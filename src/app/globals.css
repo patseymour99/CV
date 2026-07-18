@@ -94,6 +94,65 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Visible keyboard focus everywhere; components may layer their own */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ── Decorative layers ────────────────────────────────────────────────
+   A soft accent glow plus a fading grid behind the hero. Both are
+   pointer-transparent and sit behind the content, so they never affect
+   layout or interaction. */
+.hero-canvas {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 560px;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-canvas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    620px 340px at 24% -10%,
+    color-mix(in oklab, var(--accent) 16%, transparent),
+    transparent 70%
+  );
+}
+.hero-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.45;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black, transparent 72%);
+}
+
+/* Subtle gradient ink for the hero name — falls back to plain ink in print */
+.text-gradient {
+  background: linear-gradient(
+    130deg,
+    var(--foreground) 45%,
+    color-mix(in oklab, var(--foreground) 40%, var(--accent))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card hover: border tint + lifted shadow (no transform — safe on accordions) */
+.card-hover {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  border-color: color-mix(in oklab, var(--accent) 30%, var(--border));
+  box-shadow: 0 10px 30px -14px color-mix(in oklab, var(--accent) 22%, rgb(0 0 0 / 0.3));
+}
+
 /* Section reveal — a single transition, disabled with reduced motion */
 .reveal {
   opacity: 0;
@@ -125,6 +184,14 @@ body {
 @media print {
   .no-print {
     display: none !important;
+  }
+  .hero-canvas {
+    display: none !important;
+  }
+  .text-gradient {
+    background: none;
+    color: var(--foreground);
+    -webkit-text-fill-color: initial;
   }
   /* Paper is always light — override dark-mode tokens so text stays ink-dark. */
   :root,

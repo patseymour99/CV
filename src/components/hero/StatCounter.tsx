@@ -51,8 +51,11 @@ export function StatCounter({ stat }: { stat: Stat }) {
   }, [stat.value]);
 
   return (
-    <div ref={ref} className="rounded-2xl border border-border bg-card p-4 sm:p-5">
-      <p className="font-mono text-2xl font-semibold tracking-tight tnum sm:text-3xl">
+    <div ref={ref} className="card-hover rounded-2xl border border-border bg-card p-4 sm:p-5">
+      <span className="block h-1 w-8 rounded-full bg-accent/70" aria-hidden />
+      {/* Large standalone figures use proportional numerals — tabular digits
+          read loose at display sizes (dataviz mark spec). */}
+      <p className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
         {stat.prefix}
         {done ? stat.value : display}
         {stat.suffix}

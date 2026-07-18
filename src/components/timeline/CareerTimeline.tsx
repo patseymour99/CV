@@ -14,7 +14,7 @@ const SERIES = ["var(--series-1)", "var(--series-2)", "var(--series-3)", "var(--
 const BAR_HEIGHT = 30;
 const ROW_HEIGHT = 66; // label above + bar + breathing room
 const AXIS_HEIGHT = 28;
-const PAD_X = 8;
+const PAD_X = 16; // wide enough that edge year labels don't clip
 
 interface Placed {
   exp: Experience;
@@ -101,7 +101,7 @@ export function CareerTimeline() {
         subtitle="Every bar is clickable — it opens the full story below."
       />
       <Reveal>
-        <div ref={containerRef} className="relative rounded-2xl border border-border bg-card p-4 sm:p-6">
+        <div ref={containerRef} className="card-hover relative rounded-2xl border border-border bg-card p-4 sm:p-6">
           {width > 0 && (
             <svg
               width="100%"
@@ -148,7 +148,7 @@ export function CareerTimeline() {
                     role="listitem"
                     tabIndex={0}
                     aria-label={`${exp.role} at ${exp.company}, ${formatMonth(exp.start)} to ${formatMonth(exp.end)}. Press Enter for details.`}
-                    className="cursor-pointer outline-none focus-visible:opacity-80"
+                    className="group cursor-pointer outline-none focus-visible:opacity-80"
                     onClick={() => focusExperience(exp.id)}
                     onKeyDown={(event) => {
                       if (event.key === "Enter" || event.key === " ") {
@@ -185,6 +185,7 @@ export function CareerTimeline() {
                       opacity={active ? 1 : 0.85}
                       stroke={active ? "var(--foreground)" : "var(--card)"}
                       strokeWidth={active ? 1.5 : 2}
+                      className="transition-opacity group-hover:opacity-100"
                     />
                     {ongoing && (
                       <circle

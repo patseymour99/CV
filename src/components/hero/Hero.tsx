@@ -15,11 +15,22 @@ export function Hero() {
   const { openChat } = useDashboard();
 
   return (
-    <section className="pt-14 sm:pt-20">
+    <section className="pt-16 sm:pt-24">
       <Reveal>
-        <p className="font-mono text-sm text-accent">{profile.title}</p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">{profile.name}</h1>
-        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <div className="flex flex-wrap items-center gap-2">
+          {profile.title.split("·").map((part) => (
+            <span
+              key={part}
+              className="rounded-full border border-accent/25 bg-accent-soft px-3 py-1 font-mono text-xs text-accent"
+            >
+              {part.trim()}
+            </span>
+          ))}
+        </div>
+        <h1 className="text-gradient mt-5 text-4xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">
+          {profile.name}
+        </h1>
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           {profile.summary}
         </p>
       </Reveal>
@@ -49,14 +60,14 @@ export function Hero() {
           <button
             type="button"
             onClick={() => openChat()}
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/30"
           >
             <MessageCircle className="h-4 w-4" />
             Ask the AI about me
           </button>
           <a
             href="#experience"
-            className="inline-flex items-center rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+            className="inline-flex items-center rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-medium transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:bg-muted"
           >
             Explore the CV
           </a>

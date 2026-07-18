@@ -14,9 +14,11 @@ export function EducationSection() {
       />
       <div className="grid gap-4 lg:grid-cols-2">
         <Reveal>
-          <div className="h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
-            <h3 className="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground">
-              <GraduationCap className="h-4 w-4" />
+          <div className="card-hover h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
+            <h3 className="mb-4 flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                <GraduationCap className="h-4 w-4" />
+              </span>
               Education
             </h3>
             <ul className="space-y-5">
@@ -38,9 +40,11 @@ export function EducationSection() {
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <div className="h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
-            <h3 className="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground">
-              <Award className="h-4 w-4" />
+          <div className="card-hover h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
+            <h3 className="mb-4 flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                <Award className="h-4 w-4" />
+              </span>
               Highlights
             </h3>
             <ul className="space-y-4">

@@ -20,12 +20,31 @@ export function TopBar() {
   const { theme, toggle } = useTheme();
   const { openChat, setPaletteOpen } = useDashboard();
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: the section heading crossing the upper band of the viewport
+  // owns the highlight.
+  useEffect(() => {
+    const targets = NAV.map((item) => document.getElementById(item.href.slice(1))).filter(
+      (el): el is HTMLElement => el !== null
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
+        }
+      },
+      { rootMargin: "-15% 0px -75% 0px" }
+    );
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const initials = profile.name
@@ -36,8 +55,8 @@ export function TopBar() {
   return (
     <header
       className={cn(
-        "no-print sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur transition-colors",
-        scrolled && "border-border"
+        "no-print sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur transition-[border-color,box-shadow]",
+        scrolled && "border-border shadow-[0_4px_16px_-8px_rgb(0_0_0/0.15)]"
       )}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
@@ -53,7 +72,13 @@ export function TopBar() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              aria-current={activeSection === item.href ? "true" : undefined}
+              className={cn(
+                "rounded-md px-3 py-1.5 text-sm transition-colors",
+                activeSection === item.href
+                  ? "bg-accent-soft text-accent"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              )}
             >
               {item.label}
             </a>
