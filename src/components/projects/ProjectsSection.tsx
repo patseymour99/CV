@@ -26,7 +26,7 @@ export function ProjectsSection() {
             <Reveal key={project.id} delay={i * 60}>
               <article
                 className={cn(
-                  "flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-opacity duration-300 sm:p-6",
+                  "group card flex h-full flex-col p-5 transition-[opacity,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)] sm:p-6",
                   dimmed && "opacity-35"
                 )}
               >

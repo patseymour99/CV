@@ -15,21 +15,23 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
     <article
       id={`experience-${exp.id}`}
       className={cn(
-        "scroll-mt-24 rounded-2xl border border-border bg-card transition-opacity duration-300",
+        "card relative scroll-mt-24 overflow-hidden transition-[opacity,box-shadow] duration-300 hover:shadow-[var(--shadow-card-hover)]",
+        expanded && "shadow-[var(--shadow-card-hover)]",
         dimmed && "opacity-35"
       )}
     >
+      {/* Employer hue rail — spans the full card height */}
+      <span
+        className="absolute inset-y-0 left-0 w-1"
+        style={{ background: color }}
+        aria-hidden
+      />
       <button
         type="button"
         aria-expanded={expanded}
         onClick={() => setActiveExperienceId(expanded ? null : exp.id)}
-        className="flex w-full items-start gap-4 p-5 text-left sm:p-6"
+        className="flex w-full items-start gap-4 p-5 pl-6 text-left sm:p-6 sm:pl-7"
       >
-        <span
-          className="mt-1.5 h-10 w-1 shrink-0 rounded-full"
-          style={{ background: color }}
-          aria-hidden
-        />
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-lg font-semibold tracking-tight">{exp.company}</span>
@@ -65,7 +67,7 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
         )}
       >
         <div className="overflow-hidden">
-          <div className="px-5 pb-5 pl-10 sm:px-6 sm:pb-6 sm:pl-11">
+          <div className="px-6 pb-5 sm:px-7 sm:pb-6">
             <ul className="space-y-3">
               {exp.highlights.map((highlight) => (
                 <li key={highlight.text} className="flex gap-3 text-sm leading-relaxed">

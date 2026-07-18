@@ -33,8 +33,8 @@ function SkillChip({ skill }: { skill: Skill }) {
       className={cn(
         "rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium transition-all duration-300",
         selected
-          ? "border-accent bg-accent text-accent-foreground"
-          : "hover:border-accent hover:text-accent",
+          ? "border-accent bg-accent text-accent-foreground shadow-[var(--shadow-card)]"
+          : "hover:-translate-y-0.5 hover:border-accent hover:text-accent hover:shadow-[var(--shadow-card)]",
         dimmed && "opacity-40"
       )}
     >
@@ -57,7 +57,7 @@ export function SkillsSection() {
       <div className="space-y-4">
         {profile.skills.map((category, i) => (
           <Reveal key={category.category} delay={i * 60}>
-            <div className="rounded-2xl border border-border bg-card p-5 sm:p-6">
+            <div className="card p-5 sm:p-6">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                   {category.category}

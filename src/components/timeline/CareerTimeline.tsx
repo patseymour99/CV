@@ -14,7 +14,7 @@ const SERIES = ["var(--series-1)", "var(--series-2)", "var(--series-3)", "var(--
 const BAR_HEIGHT = 30;
 const ROW_HEIGHT = 66; // label above + bar + breathing room
 const AXIS_HEIGHT = 28;
-const PAD_X = 8;
+const PAD_X = 20; // keeps edge year labels from clipping
 
 interface Placed {
   exp: Experience;
@@ -101,7 +101,7 @@ export function CareerTimeline() {
         subtitle="Every bar is clickable — it opens the full story below."
       />
       <Reveal>
-        <div ref={containerRef} className="relative rounded-2xl border border-border bg-card p-4 sm:p-6">
+        <div ref={containerRef} className="card relative p-4 sm:p-6">
           {width > 0 && (
             <svg
               width="100%"
@@ -121,6 +121,7 @@ export function CareerTimeline() {
                     y2={height - AXIS_HEIGHT}
                     stroke="var(--border)"
                     strokeWidth={1}
+                    strokeDasharray="2 4"
                   />
                   {labeled && (
                     <text
@@ -136,6 +137,38 @@ export function CareerTimeline() {
                 </g>
               ))}
 
+              {/* Axis baseline */}
+              <line
+                x1={PAD_X}
+                x2={width - PAD_X}
+                y1={height - AXIS_HEIGHT + 4}
+                y2={height - AXIS_HEIGHT + 4}
+                stroke="var(--border)"
+                strokeWidth={1}
+              />
+
+              {/* Today marker */}
+              <g aria-hidden>
+                <line
+                  x1={x(toYearFraction(currentYearMonth()))}
+                  x2={x(toYearFraction(currentYearMonth()))}
+                  y1={0}
+                  y2={height - AXIS_HEIGHT + 4}
+                  stroke="var(--accent)"
+                  strokeWidth={1}
+                  opacity={0.45}
+                />
+                <text
+                  x={x(toYearFraction(currentYearMonth())) - 5}
+                  y={12}
+                  textAnchor="end"
+                  className="fill-accent font-mono"
+                  fontSize={10}
+                >
+                  today
+                </text>
+              </g>
+
               {/* Role bars */}
               {placed.map(({ exp, color, lane, startYear, endYear, ongoing }) => {
                 const barX = x(startYear);
@@ -148,7 +181,7 @@ export function CareerTimeline() {
                     role="listitem"
                     tabIndex={0}
                     aria-label={`${exp.role} at ${exp.company}, ${formatMonth(exp.start)} to ${formatMonth(exp.end)}. Press Enter for details.`}
-                    className="cursor-pointer outline-none focus-visible:opacity-80"
+                    className="timeline-bar cursor-pointer outline-none"
                     onClick={() => focusExperience(exp.id)}
                     onKeyDown={(event) => {
                       if (event.key === "Enter" || event.key === " ") {
@@ -203,7 +236,7 @@ export function CareerTimeline() {
           {/* Hover / focus tooltip */}
           {tooltip && (
             <div
-              className="pointer-events-none absolute z-10 w-56 -translate-x-1/2 -translate-y-full rounded-lg border border-border bg-card p-3 shadow-lg"
+              className="pointer-events-none absolute z-10 w-56 -translate-x-1/2 -translate-y-full rounded-lg border border-border bg-card p-3 shadow-[var(--shadow-pop)]"
               style={{
                 left: Math.min(Math.max(tooltip.x + 16, 120), Math.max(width - 120, 120)),
                 top: tooltip.y + 16,
@@ -220,7 +253,7 @@ export function CareerTimeline() {
           )}
 
           {/* Legend — color + name, also serving as quick-jump chips */}
-          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 border-t border-border pt-4">
+          <div className="mt-4 flex flex-wrap gap-x-2 gap-y-1.5 border-t border-border pt-3">
             {placed
               .slice()
               .sort((a, b) => b.startYear - a.startYear)
@@ -230,8 +263,8 @@ export function CareerTimeline() {
                   type="button"
                   onClick={() => focusExperience(exp.id)}
                   className={cn(
-                    "inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground",
-                    activeExperienceId === exp.id && "text-foreground"
+                    "inline-flex items-center gap-1.5 rounded-full border border-transparent px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground",
+                    activeExperienceId === exp.id && "border-border bg-muted text-foreground"
                   )}
                 >
                   <span className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />

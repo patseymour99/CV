@@ -51,13 +51,17 @@ export function StatCounter({ stat }: { stat: Stat }) {
   }, [stat.value]);
 
   return (
-    <div ref={ref} className="rounded-2xl border border-border bg-card p-4 sm:p-5">
+    <div ref={ref} className="card card-hover relative overflow-hidden p-4 sm:p-5">
+      <span
+        className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-accent/60 via-accent/25 to-transparent"
+        aria-hidden
+      />
       <p className="font-mono text-2xl font-semibold tracking-tight tnum sm:text-3xl">
-        {stat.prefix}
+        <span className="text-accent">{stat.prefix}</span>
         {done ? stat.value : display}
-        {stat.suffix}
+        <span className="text-accent">{stat.suffix}</span>
       </p>
-      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{stat.label}</p>
+      <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">{stat.label}</p>
     </div>
   );
 }

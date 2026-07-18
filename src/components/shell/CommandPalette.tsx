@@ -232,7 +232,7 @@ function PalettePanel() {
       aria-label="Command palette"
     >
       <div
-        className="w-full max-w-xl overflow-hidden rounded-2xl border border-border bg-card shadow-2xl"
+        className="w-full max-w-xl overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-pop)]"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center gap-2.5 border-b border-border px-4">

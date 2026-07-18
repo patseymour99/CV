@@ -51,7 +51,7 @@ export function ChatDock() {
         onClick={() => (chatOpen ? closeChat() : openChat())}
         aria-label={chatOpen ? "Close chat" : "Ask AI about me"}
         className={cn(
-          "fixed bottom-5 right-5 z-50 flex h-13 w-13 items-center justify-center rounded-full bg-accent p-4 text-accent-foreground shadow-lg transition-transform hover:scale-105",
+          "fixed bottom-5 right-5 z-50 flex h-13 w-13 items-center justify-center rounded-full bg-accent p-4 text-accent-foreground shadow-[var(--shadow-pop)] transition-transform hover:scale-105",
           chatOpen && "max-sm:hidden"
         )}
       >
@@ -63,7 +63,7 @@ export function ChatDock() {
         <div
           role="dialog"
           aria-label={`Chat with ${profile.name}'s CV assistant`}
-          className="fixed inset-0 z-40 flex flex-col border-border bg-card shadow-2xl sm:inset-auto sm:bottom-24 sm:right-5 sm:h-[min(600px,75vh)] sm:w-[380px] sm:rounded-2xl sm:border"
+          className="fixed inset-0 z-40 flex flex-col border-border bg-card shadow-2xl sm:inset-auto sm:bottom-24 sm:right-5 sm:h-[min(600px,75vh)] sm:w-[380px] sm:rounded-2xl sm:border sm:shadow-[var(--shadow-pop)]"
         >
           {/* Header */}
           <div className="flex items-center gap-2 border-b border-border px-4 py-3">

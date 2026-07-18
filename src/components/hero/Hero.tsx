@@ -15,11 +15,14 @@ export function Hero() {
   const { openChat } = useDashboard();
 
   return (
-    <section className="pt-14 sm:pt-20">
+    <section className="relative pt-16 sm:pt-24">
+      <div className="hero-backdrop -inset-x-8 -top-24" aria-hidden />
       <Reveal>
-        <p className="font-mono text-sm text-accent">{profile.title}</p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">{profile.name}</h1>
-        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="font-mono text-xs tracking-wide text-accent sm:text-sm">{profile.title}</p>
+        <h1 className="mt-4 text-5xl font-semibold tracking-tighter text-balance sm:text-7xl">
+          {profile.name}
+        </h1>
+        <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           {profile.summary}
         </p>
       </Reveal>
@@ -49,14 +52,14 @@ export function Hero() {
           <button
             type="button"
             onClick={() => openChat()}
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:opacity-90 hover:shadow-[var(--shadow-card-hover)]"
           >
             <MessageCircle className="h-4 w-4" />
             Ask the AI about me
           </button>
           <a
             href="#experience"
-            className="inline-flex items-center rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+            className="inline-flex items-center rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:bg-muted hover:shadow-[var(--shadow-card-hover)]"
           >
             Explore the CV
           </a>

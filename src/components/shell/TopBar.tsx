@@ -36,8 +36,8 @@ export function TopBar() {
   return (
     <header
       className={cn(
-        "no-print sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur transition-colors",
-        scrolled && "border-border"
+        "no-print sticky top-0 z-40 border-b border-transparent bg-background/80 backdrop-blur transition-[border-color,box-shadow]",
+        scrolled && "border-border shadow-[var(--shadow-card)]"
       )}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
