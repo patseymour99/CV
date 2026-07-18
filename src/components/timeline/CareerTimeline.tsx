@@ -101,7 +101,7 @@ export function CareerTimeline() {
         subtitle="Every bar is clickable — it opens the full story below."
       />
       <Reveal>
-        <div ref={containerRef} className="relative rounded-2xl border border-border bg-card p-4 sm:p-6">
+        <div ref={containerRef} className="card relative p-4 sm:p-6">
           {width > 0 && (
             <svg
               width="100%"
@@ -111,30 +111,33 @@ export function CareerTimeline() {
               aria-label="Career timeline"
               className="select-none"
             >
-              {/* Year grid + axis */}
-              {years.map(({ year, labeled }) => (
-                <g key={year}>
-                  <line
-                    x1={x(year)}
-                    x2={x(year)}
-                    y1={0}
-                    y2={height - AXIS_HEIGHT}
-                    stroke="var(--border)"
-                    strokeWidth={1}
-                  />
-                  {labeled && (
-                    <text
-                      x={x(year)}
-                      y={height - 8}
-                      textAnchor="middle"
-                      className="fill-muted-foreground font-mono tnum"
-                      fontSize={11}
-                    >
-                      {year}
-                    </text>
-                  )}
-                </g>
-              ))}
+              {/* Year grid + axis — edge labels anchor inward so none clip */}
+              {years.map(({ year, labeled }) => {
+                const anchor = x(year) < 24 ? "start" : x(year) > width - 24 ? "end" : "middle";
+                return (
+                  <g key={year}>
+                    <line
+                      x1={x(year)}
+                      x2={x(year)}
+                      y1={0}
+                      y2={height - AXIS_HEIGHT}
+                      stroke="var(--border)"
+                      strokeWidth={1}
+                    />
+                    {labeled && (
+                      <text
+                        x={x(year)}
+                        y={height - 8}
+                        textAnchor={anchor}
+                        className="fill-muted-foreground font-mono tnum"
+                        fontSize={11}
+                      >
+                        {year}
+                      </text>
+                    )}
+                  </g>
+                );
+              })}
 
               {/* Role bars */}
               {placed.map(({ exp, color, lane, startYear, endYear, ongoing }) => {
@@ -180,11 +183,12 @@ export function CareerTimeline() {
                       y={barY}
                       width={barWidth}
                       height={BAR_HEIGHT}
-                      rx={6}
+                      rx={5}
                       fill={color}
                       opacity={active ? 1 : 0.85}
                       stroke={active ? "var(--foreground)" : "var(--card)"}
                       strokeWidth={active ? 1.5 : 2}
+                      className="transition-opacity duration-200 hover:opacity-100"
                     />
                     {ongoing && (
                       <circle

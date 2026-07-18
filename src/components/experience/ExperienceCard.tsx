@@ -15,7 +15,8 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
     <article
       id={`experience-${exp.id}`}
       className={cn(
-        "scroll-mt-24 rounded-2xl border border-border bg-card transition-opacity duration-300",
+        "card card-interactive scroll-mt-24 transition-opacity duration-300",
+        expanded && "border-ring/50",
         dimmed && "opacity-35"
       )}
     >
@@ -25,11 +26,17 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
         onClick={() => setActiveExperienceId(expanded ? null : exp.id)}
         className="flex w-full items-start gap-4 p-5 text-left sm:p-6"
       >
+        {/* Employer monogram in the same series hue as the timeline bar */}
         <span
-          className="mt-1.5 h-10 w-1 shrink-0 rounded-full"
-          style={{ background: color }}
+          className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-mono text-sm font-bold"
+          style={{
+            background: `color-mix(in srgb, ${color} 14%, var(--card))`,
+            color,
+          }}
           aria-hidden
-        />
+        >
+          {exp.company[0]}
+        </span>
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-lg font-semibold tracking-tight">{exp.company}</span>
@@ -65,7 +72,7 @@ export function ExperienceCard({ exp, color }: { exp: Experience; color: string 
         )}
       >
         <div className="overflow-hidden">
-          <div className="px-5 pb-5 pl-10 sm:px-6 sm:pb-6 sm:pl-11">
+          <div className="px-5 pb-5 sm:px-6 sm:pb-6 sm:pl-20">
             <ul className="space-y-3">
               {exp.highlights.map((highlight) => (
                 <li key={highlight.text} className="flex gap-3 text-sm leading-relaxed">

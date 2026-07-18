@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, TrendingUp } from "lucide-react";
 import { useDashboard } from "@/components/shell/DashboardContext";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -26,7 +26,7 @@ export function ProjectsSection() {
             <Reveal key={project.id} delay={i * 60}>
               <article
                 className={cn(
-                  "flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-opacity duration-300 sm:p-6",
+                  "card card-interactive flex h-full flex-col p-5 transition-opacity duration-300 sm:p-6",
                   dimmed && "opacity-35"
                 )}
               >
@@ -48,7 +48,10 @@ export function ProjectsSection() {
                   {project.description}
                 </p>
                 {project.impact && (
-                  <p className="mt-3 font-mono text-xs font-medium text-accent">{project.impact}</p>
+                  <p className="mt-3 flex items-center gap-1.5 font-mono text-xs font-medium text-accent">
+                    <TrendingUp className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    {project.impact}
+                  </p>
                 )}
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {project.tech.map((tech) => (
